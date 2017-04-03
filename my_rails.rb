@@ -1,7 +1,7 @@
 # This file consist template for new Ruby on Rails application.
 # It adopted for use rails application with slim, bootstrap and kaminari.
 # Before run rails new command - customize this file (comment or uncomment rows below).
-# For unstall new rails application from this file run (for sqlite DB):
+# For install new rails application from this file run (for sqlite DB):
 # rails new -m my_rails.rb
 # or for postgres DB:
 # rails new -m my_rails.rb -d postgresql
