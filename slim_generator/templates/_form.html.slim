@@ -1,14 +1,22 @@
-= form_for @<%= singular_table_name %> do |f|
+= form_for @<%= singular_table_name %>, html: {class: 'form-horizontal'} do |f|
   - if @<%= singular_table_name %>.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
-      ul
-        - @<%= singular_table_name %>.errors.full_messages.each do |message|
-          li = message
+      .col-lg-offset-2.col-lg-10
+        span.text-danger
+          h4 = t('errors.template.header', count: @<%= singular_table_name %>.errors.count, model: <% orm_class %>.model_name.human)
+          ul
+            - @<%= singular_table_name %>.errors.full_messages.each do |message|
+              li = message
 
 <% attributes.each do |attribute| -%>
-  .field
-    = f.label :<%= attribute.name %>
-    = f.<%= attribute.field_type %> :<%= attribute.name %>
+  .form-group.required
+    .field
+      = f.label :<%= attribute.name %>, "#{<%= orm_class %>.human_attribute_name :<%= attribute.name}", class: 'col-lg-2 control-label'
+      .col-lg-10
+        = f.<%= attribute.field_type %> <%= attribute.name %>, class: 'col-lg-10 form-control'
 <% end -%>
-  .actions = f.submit
+  .actions.form-group
+    .col-lg-offset-2.col-lg-10
+      => f.submit t('helpers.submit.save'), class: 'btn btn-success'
+      = link_to session[:return_to] do
+        span.btn.btn-info
+          = t('views.action.back')

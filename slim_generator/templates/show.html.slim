@@ -1,11 +1,20 @@
-p#notice = notice
+.col-lg-offset-2.col-lg-10
+  p#notice = notice
+  h3.text-primary
+    = <%= orm_class %>.model_name.human
+  table.table.table-hover.table-striped
+  <% attributes.each do |attribute| -%>
+    tr
+      td.col-md-2.text-right
+        strong
+          = "#{<%= orm_class %>.human_attribute_name :<%= attribute.name %>}"
+      td
+        = @<%= singular_table_name %>.<%= attribute.name %>
+  <% end -%>
 
-<% attributes.each do |attribute| -%>
-p
-  strong <%= attribute.human_name %>:
-  = @<%= singular_table_name %>.<%= attribute.name %>
-<% end -%>
-
-= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
-'|
-= link_to 'Back', <%= index_helper %>_path
+  => link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) do
+    span.btn.btn-warning
+      = t('views.action.edit')
+  = link_to <%= plural_table_name %>_path do
+    span.btn.btn-info
+      = t('views.action.back')

@@ -1,8 +1,5 @@
-h1 Editing <%= singular_table_name %>
+.col-lg-offset-1.col-lg-11
+  h3.text-primary
+    = "#{t('views.action.edit')} #{<%= orm_class %>.model_name.human}"
 
 == render 'form'
-
-= link_to 'Show', @<%= singular_table_name %>
-'|
-= link_to 'Back', <%= index_helper %>_path
-

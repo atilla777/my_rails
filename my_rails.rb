@@ -92,7 +92,14 @@ environment %q(
 # Create custom generators (bootstrap, kaminari and slim views)
 directory File.dirname(__FILE__) ++ '/slim_generator', 'lib/generators/slim/scaffold'
 directory File.dirname(__FILE__) ++ '/kaminari_view', 'app/views/kaminari'
-copy_file File.dirname(__FILE__) ++ '/locale/ru.yml', 'config/ru.yml'
+copy_file File.dirname(__FILE__) ++ '/locales/ru.yml', 'config/ru.yml'
+
+# Create custom generator for controller
+directory File.dirname(__FILE__) ++ '/controller_generator', 'lib/generators/rails/scaffold_controller'
+
+# Create modules for ApplicatioController (for back link, sorting and filtering)
+copy_file File.dirname(__FILE__) ++ '/modules/sort_and_filter.rb', 'app/controller/sort_and_filter.rb'
+copy_file File.dirname(__FILE__) ++ '/modules/back_link.rb', 'app/controller/back_link.rb'
 
 # Add templates to .gitignore
 %w(*.swp .DS_Store .env).each do |gitignored|

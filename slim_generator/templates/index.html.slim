@@ -1,9 +1,7 @@
-h1 Listing <%= plural_table_name %>
-
-.<%= plural_table_name %>
+p#notice = notice
+h3.text-primary
+  = <%= orm_class %>.model_name.human count: 2
+.pull-right
+  = button_to t('helpers.submit.create', model: <%= orm_class %>.model_name.human), new_<%= singular_table_name%>_path, method: :get, class: 'btn btn-success'
+#<%= plural_table_name %>_partial
   = render '<%= plural_table_name %>'
-
-
-br
-
-= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path
