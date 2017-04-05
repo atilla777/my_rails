@@ -1,5 +1,5 @@
 .pull-left.form-group
-  = form_tag <%= plual_table_name %>_path, method: :get, remote: true, class: 'form-inline' do
+  = form_tag <%= plural_table_name %>_path, method: :get, remote: true, class: 'form-inline' do
     = hidden_field_tag :sort, params[:sort]
     .input-group
       = text_field_tag :filter, params[:filter], class: 'form-control'
@@ -12,7 +12,7 @@ table.table.table-hover.table-bordered.table-striped
     tr
 <% attributes.each do |attribute| -%>
       th
-        = link_to_sort "#{<%= orm_class %>.human_attribute_name :<%= atribute.name %>}", :<%= atribute.name %>
+        = link_to_sort "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", :<%= attribute.name %>
 <% end -%>
       th.fit
 

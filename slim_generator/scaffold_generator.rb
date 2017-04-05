@@ -9,6 +9,8 @@ module Slim
         available_views.each do |view|
           if view == '_index'
             template "_index.html.slim", File.join('app', 'views', controller_file_path, "_#{file_name.pluralize}.html.slim")
+          elsif view == 'js_index'
+            template "js_index.js.erb", File.join('app', 'views', controller_file_path, "#{file_name.pluralize}.js.erb")
           else
             filename = filename_with_extensions view
             template "#{view}.html.slim", File.join('app', 'views', controller_file_path, filename)
@@ -20,7 +22,7 @@ module Slim
 
       protected
       def available_views
-        ['index', '_index', 'edit', 'show', 'new', '_form']
+        ['index', '_index', 'edit', 'show', 'new', '_form', 'js_index']
       end
 
       def handler

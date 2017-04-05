@@ -4,18 +4,30 @@ require_dependency "<%= namespaced_path %>/application_controller"
 <% end -%>
 <% module_namespacing do -%>
 class <%= controller_class_name %>Controller < ApplicationController
-  before_action :set_<%= singular_table_name %>, only: [:show, :update, :destroy]
 
   # GET <%= route_url %>
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
-
-    render json: <%= "@#{plural_table_name}" %>
+    <%= plural_table_name %> = filter_rows(<%= singular_table_name.classify %>)
+    @<%= plural_table_name %> = order_rows(<%= plural_table_name %>)
+    respond_to do |format|
+      format.html
+      format.js {render '<%= plural_table_name %>'}
+    end
   end
 
   # GET <%= route_url %>/1
   def show
-    render json: <%= "@#{singular_table_name}" %>
+    @<%= singular_table_name %> = set_<%= singular_table_name %>
+  end
+
+  # GET <%= route_url %>/new
+  def new
+    @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
+  end
+
+  # GET <%= route_url %>/1/edit
+  def edit
+    @<%= singular_table_name %> = set_<%= singular_table_name %>
   end
 
   # POST <%= route_url %>
@@ -23,24 +35,27 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     if @<%= orm_instance.save %>
-      render json: <%= "@#{singular_table_name}" %>, status: :created, location: <%= "@#{singular_table_name}" %>
+      redirect_to <%= plural_table_name %>_path, notice: t('flashes.create', model: <%= singular_table_name.classify %>.model_name.human)
     else
-      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+      render :new
     end
   end
 
   # PATCH/PUT <%= route_url %>/1
   def update
+    @<%= singular_table_name %> = set_<%= singular_table_name %>
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      render json: <%= "@#{singular_table_name}" %>
+      redirect_to @<%= singular_table_name %>, notice: t('flashes.update', model: <%= singular_table_name.classify %>.model_name.human)
     else
-      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+      render :edit
     end
   end
 
   # DELETE <%= route_url %>/1
   def destroy
+    @<%= singular_table_name %> = set_<%= singular_table_name %>
     @<%= orm_instance.destroy %>
+    redirect_to <%= index_helper %>_url, notice: t('flashes.destroy', model: <%= singular_table_name.classify %>.model_name.human)
   end
 
   private

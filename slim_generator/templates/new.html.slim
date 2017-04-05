@@ -1,5 +1,5 @@
 .col-lg-offset-1.col-lg-11
   h3.text-primary
-    = "#{t('views.action.new')} #{<%= orm_class %>.model_name.human}"
+    = "#{t('views.action.new')} #{<%= singular_table_name.classify %>.model_name.human}"
 
 == render 'form'

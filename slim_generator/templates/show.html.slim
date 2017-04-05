@@ -1,13 +1,13 @@
 .col-lg-offset-2.col-lg-10
   p#notice = notice
   h3.text-primary
-    = <%= orm_class %>.model_name.human
+    = <%= singular_table_name.classify %>.model_name.human
   table.table.table-hover.table-striped
   <% attributes.each do |attribute| -%>
     tr
       td.col-md-2.text-right
         strong
-          = "#{<%= orm_class %>.human_attribute_name :<%= attribute.name %>}"
+          = "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}"
       td
         = @<%= singular_table_name %>.<%= attribute.name %>
   <% end -%>

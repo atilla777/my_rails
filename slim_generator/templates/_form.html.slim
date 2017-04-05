@@ -2,7 +2,7 @@
   - if @<%= singular_table_name %>.errors.any?
       .col-lg-offset-2.col-lg-10
         span.text-danger
-          h4 = t('errors.template.header', count: @<%= singular_table_name %>.errors.count, model: <% orm_class %>.model_name.human)
+          h4 = t('errors.template.header', count: @<%= singular_table_name %>.errors.count, model: <%= singular_table_name.classify %>.model_name.human)
           ul
             - @<%= singular_table_name %>.errors.full_messages.each do |message|
               li = message
@@ -10,9 +10,9 @@
 <% attributes.each do |attribute| -%>
   .form-group.required
     .field
-      = f.label :<%= attribute.name %>, "#{<%= orm_class %>.human_attribute_name :<%= attribute.name}", class: 'col-lg-2 control-label'
+      = f.label :<%= attribute.name %>, "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", class: 'col-lg-2 control-label'
       .col-lg-10
-        = f.<%= attribute.field_type %> <%= attribute.name %>, class: 'col-lg-10 form-control'
+        = f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'col-lg-10 form-control'
 <% end -%>
   .actions.form-group
     .col-lg-offset-2.col-lg-10
