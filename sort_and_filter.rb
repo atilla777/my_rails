@@ -1,14 +1,15 @@
 module SortAndFilter
   DEFAULT_FIELD_NUMBER = 1
+  EXCLUDE_FROM_SEARCH = ['id', 'created_at', 'updated_at']
   private
 
-  def filter_rows(relation)
+  def filter_rows(relation, exlude_from_search = EXCLUDE_FROM_SEARCH)
     if params[:filter].present?
-      fields = relation.attribute_names - ['id', 'created_at', 'updated_at']
+      fields = relation.attribute_names - exlude_from_search
       table = relation.table_name
       where_string = []
       fields.each do |field|
-        where_string << %Q(LOWER("#{table}"."#{field}") LIKE LOWER(:search))
+        where_string << %Q(LOWER(CAST("#{table}"."#{field}" AS text)) LIKE LOWER(:search))
       end
       where_string = where_string.join(' OR ')
       relation = relation.where(where_string, search: "%#{params.fetch(:filter, '')}%")

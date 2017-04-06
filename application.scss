@@ -16,11 +16,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-label.required:after {
+.form-group.required .control-label:after {
     content: " *";
-    color: red;}
-	
-.table td.fit
+    color: red;
+}
+
+.table td.fit,
 .table th.fit {
     white-space: nowrap;
     width: 1%;
