@@ -7,8 +7,10 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # GET <%= route_url %>
   def index
-    <%= plural_table_name %> = filter_rows(<%= singular_table_name.classify %>)
-    @<%= plural_table_name %> = order_rows(<%= plural_table_name %>)
+    @form = SortAndFilterForm.new(<%= singular_table_name.classify %>, params, :id)
+    <%= plural_table_name %> = FilterRows.new(<%= singular_table_name.classify %>, @form).call
+    <%= plural_table_name %> = SortRows.new(<%= plural_table_name %> , @form).call
+    @<%= plural_table_name %> = <%= plural_table_name %>.page(@form.page)
     respond_to do |format|
       format.html
       format.js {render '<%= plural_table_name %>'}

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include SortAndFilter
   include BackLink
 
   protect_from_forgery with: :exception

@@ -1,14 +1,13 @@
 module ApplicationHelper
-  def link_to_sort(name, field, cont = controller.controller_name, act = controller.action_name)
-    direction = sort_direction
-    if params[:sort_field].to_sym == field
-      direction_image = direction == :asc ? 'glyphicon-triangle-bottom' : 'glyphicon-triangle-top'
+  def link_to_sort(name, field, form, cont = controller.controller_name, act = controller.action_name)
+    if form.sort_field == field
+      direction_image = form.sort_direction == :asc ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'
       direction_image = %Q(<i class ='glyphicon #{direction_image}' aria-hidden='true'></i>)
     end
-    new_sort_direction = direction == :asc ? :desc : :asc
+    new_sort_direction = form.sort_direction == :asc ? :desc : :asc
     link_to({controller: cont,
             action: act,
-            filter: params[:filter],
+            filter: form.filter,
             sort_field: field,
             sort_direction: new_sort_direction},
             {remote: true,

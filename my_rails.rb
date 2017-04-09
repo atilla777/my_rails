@@ -53,7 +53,9 @@ copy_file File.dirname(__FILE__) ++ '/controller.rb', 'lib/templates/rails/scaff
 # Create application_controller.rb, application_helper.rb, modules for ApplicationController (for back link, sorting and filtering)
 remove_file 'app/controllers/application_controller.rb'
 copy_file File.dirname(__FILE__) ++ '/application_controller.rb', 'app/controllers/application_controller.rb'
-copy_file File.dirname(__FILE__) ++ '/sort_and_filter.rb', 'app/controllers/sort_and_filter.rb'
+copy_file File.dirname(__FILE__) ++ '/sort_rows.rb', 'app/commands/sort_rows.rb'
+copy_file File.dirname(__FILE__) ++ '/filter_rows.rb', 'app/commands/filter_rows.rb'
+copy_file File.dirname(__FILE__) ++ '/sort_and_filter_form.rb', 'app/forms/sort_and_filter_form.rb'
 copy_file File.dirname(__FILE__) ++ '/back_link.rb', 'app/controllers/back_link.rb'
 remove_file 'app/helpers/application_helper.rb'
 copy_file File.dirname(__FILE__) ++ '/application_helper.rb', 'app/helpers/application_helper.rb'

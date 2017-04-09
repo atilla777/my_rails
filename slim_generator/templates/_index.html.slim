@@ -12,7 +12,7 @@ table.table.table-hover.table-bordered.table-striped
     tr
 <% attributes.each do |attribute| -%>
       th
-        = link_to_sort "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", :<%= attribute.name %>
+        = link_to_sort "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", :<%= attribute.name %>, @form
 <% end -%>
       th.fit
 
@@ -36,4 +36,4 @@ table.table.table-hover.table-bordered.table-striped
 span.pagination
   = page_entries_info @<%= plural_table_name %>
 span.pull-right
-  = paginate @<%= plural_table_name %>, params: {filter: params[:filter], sort_field: params[:sort_field], sort_direction: params[:sort_direction]}, remote: true
+  = paginate @<%= plural_table_name %>, params: {filter: @form.filter, sort_field: @form.sort_field, sort_direction: @form.sort_direction}, remote: true
