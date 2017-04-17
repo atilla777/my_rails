@@ -8,7 +8,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # GET <%= route_url %>
   def index
     @form = SortAndFilterForm.new(<%= singular_table_name.classify %>, params, :id)
-    <%= plural_table_name %> = FilterRows.new(<%= singular_table_name.classify %>, @form).call
+    <%= plural_table_name %> = FilterRows.new(relation: <%= singular_table_name.classify %>, form: @form).call
     <%= plural_table_name %> = SortRows.new(<%= plural_table_name %> , @form).call
     @<%= plural_table_name %> = <%= plural_table_name %>.page(@form.page)
     respond_to do |format|
