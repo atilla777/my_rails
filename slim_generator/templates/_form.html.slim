@@ -12,7 +12,7 @@
     .field
       = f.label :<%= attribute.name %>, "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", class: 'col-lg-2 control-label'
       .col-lg-10
-        = f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'col-lg-10 form-control'
+        = f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control'
 <% end -%>
   .actions.form-group
     .col-lg-offset-2.col-lg-10
