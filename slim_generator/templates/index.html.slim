@@ -2,6 +2,8 @@ p#notice = notice
 h3.text-primary
   = <%= singular_table_name.classify %>.model_name.human count: 2
 .pull-right
-  = button_to t('helpers.submit.create', model: <%= singular_table_name.classify %>.model_name.human), new_<%= singular_table_name%>_path, method: :get, class: 'btn btn-success'
+  = link_to new_<%= singular_table_name%>_path do
+    span.btn.btn-success
+      = t('helpers.submit.create', model: <%= singular_table_name.classify %>.model_name.human)
 #<%= plural_table_name %>_partial
   = render '<%= plural_table_name %>'
