@@ -11,10 +11,9 @@ class FilterRows
 
   def call
     if @form.filter.present?
-      table = @relation.table_name
       where_string = []
       @search_fields.each do |field|
-        where_string << %Q(LOWER(CAST("#{table}"."#{field}" AS text)) LIKE LOWER(:search))
+        where_string << %Q(LOWER(CAST(#{field} AS text)) LIKE LOWER(:search))
       end
       where_string = where_string.join(' OR ')
       @relation.where(where_string, search: "%#{@form.filter}%")
