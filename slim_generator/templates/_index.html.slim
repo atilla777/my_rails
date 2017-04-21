@@ -12,7 +12,7 @@ table.table.table-hover.table-bordered.table-striped
     tr
 <% attributes.each do |attribute| -%>
       th
-        = link_to_sort "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", :<%= attribute.name %>, @form
+        = link_to_sort field_label: "#{<%= singular_table_name.classify %>.human_attribute_name :<%= attribute.name %>}", field_name: :<%= attribute.name %>, form: @form
 <% end -%>
       th.fit
 
