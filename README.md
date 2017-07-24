@@ -10,7 +10,7 @@ git clone https://github.com/atilla777/my_rails.git
 ```
 #### Configuration
 Before run "rails new" command customize **my_rails.rb** file (comment or uncomment lines).
-To change default l and time zone make changes **in application.rb** file:
+To change default locale and time zone make changes in **application.rb** file:
 ```
 environment %q(config.time_zone = 'Moscow')
 environment %q(config.i18n.default_locale = :ru)
