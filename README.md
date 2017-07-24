@@ -1,6 +1,8 @@
 ### My Rails
 My Rails help to make new Ruby on Rails application from template.
 It adopted for use rails application with git, slim, bootstrap and kaminari (rspec and factory girls also can be used).
+Also it helps consist custom generators for view and controllers to help fast crate simple CRUD (like RailsAdmin).
+
 Before run "rails new" command customize  my_rails.rb file (comment or uncomment lines).
 
 For install new rails application from template file run (for sqlite DB):
