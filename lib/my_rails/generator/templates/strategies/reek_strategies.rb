@@ -1,4 +1,6 @@
 class ReekStrategy < Strategy
+  include MyRails
+
   category :code_lint2
   name 'reek'
   gems { gem 'reek', groups: [:development, :test], require: false }

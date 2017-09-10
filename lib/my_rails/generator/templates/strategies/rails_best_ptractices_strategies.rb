@@ -1,4 +1,6 @@
 class RailsBestPracticesStrategy < Strategy
+  include MyRails
+
   category :code_lint3
   name 'rails_best_practices'
   gems { gem 'rails_best_practices', groups: [:development, :test], require: false }

@@ -1,4 +1,6 @@
 class BrakemanStrategy < Strategy
+  include MyRails
+
   category :code_lint4
   name 'brakeman'
   gems { gem 'brakeman', groups: [:development, :test], require: false }

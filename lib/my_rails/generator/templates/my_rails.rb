@@ -18,7 +18,7 @@
 # e.t.c.
 
 require 'my_rails'
-include MyRails
+extend MyRails
 
 Strategy.init(self)
 Strategy.load_strategies

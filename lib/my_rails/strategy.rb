@@ -26,7 +26,7 @@ module MyRails
     end
 
     def self.my_path(path)
-      File.dirname(__FILE__) ++ "/#{path}"
+      File.dirname(__FILE__) ++ "/generator/templates/#{path}"
     end
 
     def self.load_strategies

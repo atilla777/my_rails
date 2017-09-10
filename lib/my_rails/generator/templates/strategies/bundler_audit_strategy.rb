@@ -1,4 +1,6 @@
 class BundlerAuditStrategy < Strategy
+  include MyRails
+
   category :code_lint5
   name 'bundler-audit'
   gem 'bundler-audit', groups: [:development, :test], require: false

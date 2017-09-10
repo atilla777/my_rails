@@ -1,4 +1,6 @@
 class RubocopStrategy < Strategy
+  include MyRails
+
   category :code_lint6
   name 'rubocop'
   gems { gem 'rubocop', groups: [:development, :test], require: false }

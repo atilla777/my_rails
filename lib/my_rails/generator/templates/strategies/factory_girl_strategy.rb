@@ -1,4 +1,6 @@
 class FactoryGirlStrategy < Strategy
+  include MyRails
+
   category :test_database_fixture
   name 'factory_girl_rails'
   gems { gem 'factory_girl_rails', groups: [:development, :test] }
