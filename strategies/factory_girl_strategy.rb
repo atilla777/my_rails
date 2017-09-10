@@ -10,6 +10,7 @@ class FactoryGirlStrategy < Strategy
 <<-RUBY
   # Factory girl create/build without FactoryGirl prefix (added by my_rails)
   config.include FactoryGirl::Syntax::Methods
+
 RUBY
         end
       end
@@ -19,6 +20,7 @@ RUBY
 <<-RUBY
   # Factory girl create/build without FactoryGirl prefix (added by my_rails)
   include FactoryGirl::Syntax::Methods
+
 RUBY
       end
     end
